@@ -1,0 +1,17 @@
+{% extends 'layoutadmin/layout.html' %}
+{% load static %}
+{% block title %}
+Xác nhận xóa
+{% endblock %}
+
+{% block content %}
+<main class="p-6 sm:p-10 space-y-6">
+  <h1 class="text-2xl font-semibold mb-4">Xác nhận xóa sản phẩm</h1>
+  <p>Bạn có chắc chắn muốn xóa sản phẩm "{{ san_pham.ten }}" không?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded">Xóa</button>
+    <a href="{% url 'qlsanpham' %}" class="px-4 py-2 bg-gray-600 text-white rounded">Hủy</a>
+  </form>
+</main>
+{% endblock %}

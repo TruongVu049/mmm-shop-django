@@ -1,0 +1,61 @@
+{% extends 'layoutadmin/layout.html' %}
+{% load static %}
+{% block title %}
+Sản phẩm
+{% endblock %}
+
+{% block content %}
+<main class="p-6 sm:p-10 space-y-6">
+  <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
+      <div class="mr-6">
+          <h1 class="text-4xl font-semibold mb-2">SẢN PHẨM</h1>
+      </div>
+      <div class="flex flex-wrap items-start justify-end -mb-3">
+        <a href="{% url 'themsanpham' %}">
+            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
+                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Thêm Sản Phẩm
+            </button>
+        </a>
+    </div>
+  </div>
+  <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+    <thead>
+      <tr>
+        <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">Tên sản phẩm</th>
+        <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">Mô tả</th>
+        <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">Giá</th>
+        <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">Hình ảnh</th>
+        <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for san_pham in san_phams %}
+      <tr class="hover:bg-gray-100">
+        <td class="px-6 py-4 border-b border-gray-300">{{ san_pham.ten }}</td>
+        <td class="px-6 py-4 border-b border-gray-300">{{ san_pham.mota }}</td>
+        <td class="px-6 py-4 border-b border-gray-300">{{ san_pham.gia }}</td>
+        <td class="px-6 py-4 border-b border-gray-300">
+          {% if san_pham.hinhanh %}
+            <img src="/media/{{san_pham.hinhanh}}" alt="{{ san_pham.ten }}" width="100" class="rounded-lg">
+          {% else %}
+            Không có hình ảnh
+          {% endif %}
+        </td>
+        <td class="px-6 py-4 border-b border-gray-300">
+          <a href="{% url 'suasanpham' san_pham.id %}" class="text-indigo-600 hover:text-indigo-900">Sửa</a>
+          <a href="{% url 'xoasanpham' san_pham.id %}" class="text-indigo-600 hover:text-indigo-900">Xóa</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="flex flex-col items-center space-y-6 md:space-y-0 md:flex-row justify-between">
+    <div class="pt-2 relative text-gray-600 sm:w-auto w-full">
+    </div>
+    
+  </div>
+</main>
+{% endblock %}

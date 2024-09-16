@@ -1,0 +1,45 @@
+{% extends 'layout/layout.html' %}
+{% block title %}
+Thanh toán
+{% endblock %}
+
+{% block content %}
+<main class="xl:container mx-auto lg:container sm:container">
+    <div class="flex h-[90vh] items-center justify-center  ">
+        <div class="p-4 rounded-md shadow-md md:mx-0 mx-6 border-2 <?php echo $themDonHang ? 'border-green-500' : 'border-red-500' ?>">
+                {% if trangthai == True %}
+                <div class="">
+                    <svg class="mx-auto my-0 md:w-20 md:h-20 w-12 h-12 text-green-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+                <h3 class="py-3 font-semibold text-center md:text-xl text-lg">Đặt hàng thành công</h3>
+                <p class="py-3 text-gray-700 md:text-base text-sm text-justify">Cùng MMM bảo vệ quyền lợi của bạn - chỉ nhận hàng & thanh toán khi đơn hàng ở trạng thái "Đang giao hàng".</p>
+                <div class="flex items-center justify-center gap-3">
+                    <a href="{% url "index" %}" class="cursor-pointer  px-4 py-2 border border-gray-300 text-gray-900 rounded-md">Trang chủ</a>
+                    <a href="{% url "donhang" %}" class="cursor-pointer hover:bg-green-400 px-4 py-2 border  text-white bg-green-500 rounded-md">Đơn mua</a>
+                </div>
+                {% else %}
+                <div class="">
+                    <svg class="mx-auto my-0 md:w-20 md:h-20 w-12 h-12 text-red-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+                <h3 class="py-3 font-semibold text-center md:text-xl text-lg">Đặt hàng không thành công</h3>
+                <p class="py-3 text-gray-700 md:text-base text-sm text-justify">Đã xảy ra lỗi. Vui lòng thử lại!</p>
+                <div class="flex items-center justify-center gap-3">
+                    <a href="{% url "index" %}" class="cursor-pointer  px-4 py-2 border border-gray-300 text-gray-900 rounded-md">Trang chủ</a>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+</main>
+<script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", ()=>{
+        document.getElementById("footer").innerHTML = "";
+        document.getElementById("footer").classList.add("hidden");
+    });
+</script>
+{% endblock %}
+
+

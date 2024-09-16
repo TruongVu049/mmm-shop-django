@@ -1,0 +1,92 @@
+{% extends 'layoutadmin/layout.html' %}
+{% load static %}
+{% block title %}
+  Danh mục
+{% endblock %}
+
+{% block content %}
+<main class="p-6 sm:p-10 space-y-6">
+  <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
+      <div class="mr-6">
+          <h1 class="text-4xl font-semibold mb-2">DANH MỤC</h1>
+      </div>
+  </div>
+  <div class="flex flex-col items-center space-y-6 md:space-y-0 md:flex-row justify-between">
+    <div style="width: 70%;" class="pt-2 relative  text-gray-600 w-full">
+
+
+      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+        </svg>
+    </div>
+    <form action="" method="get">
+      <input type="search" name="searchValue" class="block w-full h-10 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 border-gray-300 text-gray focus:ring-blue-500 focus:border-blue-500" placeholder="Tên" required />
+      <button type="submit" name="searchdm" class="text-white absolute end-2 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-1.5 bg-blue-600 focus:ring-blue-500">Tìm kiếm</button>
+    </form>
+
+
+
+
+    </div>
+    <div class="flex flex-wrap items-start justify-end -mb-3">
+        <a href="{% url "themdanhmuc" %}">
+            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
+                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Thêm Danh Mục
+            </button>
+        </a>
+    </div>
+  </div>
+  <main class="p-6 sm:p-10 space-y-6">
+
+    <div>
+            <div class="relative inline-block w-1/2">
+                
+            </div>
+
+            <table class="w-full">
+                <thead class="bg-gray-50 border-b-2 border-gray-500">
+                    <tr>
+                        <th class="p-3 text-sm tracking-wide">ID</th>
+                        <th class="p-3 text-sm tracking-wide">Tên danh mục</th>
+                        <th class="p-3 text-sm tracking-wide">Sửa</th>
+                        <th class="p-3 text-sm tracking-wide">Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% if dsdanhmuc %}
+                  {% for loai in dsdanhmuc  %}
+                    <tr class="bg-white border-b ">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          {{loai.id}}
+                        </th>
+                        <td style="text-align: center;" class="p-3 text-sm tracking-wide">
+                          {{loai.ten}}
+                        </td>
+                        <td class="p-3 text-sm text-center text-gray-700">
+                          <a href="{% url 'suadanhmuc' loai.id %}" class="inline-block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Sửa</a>
+                        </td>
+                        <td class="p-3 text-sm text-center text-gray-700">
+                            <a href="{% url 'xoadanhmuc' loai.id %}" class="inline-block focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Xóa</a>
+                        </td>
+                    <td class="px-6 py-4">
+                      
+                    </td>
+                  </tr>
+                  {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation example" class="mt-5 w-full text-center">
+                
+            </nav>
+    </div>
+
+
+</main>
+</main>
+{% endblock %}
